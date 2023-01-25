@@ -6,19 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>952</width>
+    <height>767</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Giraffe</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="data/ressource.qrc">
+    <normaloff>:/giraffe.ico</normaloff>:/giraffe.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
      <widget class="MyGLWidget" name="openGLWidget"/>
     </item>
-    <item>
+    <item row="1" column="0">
      <widget class="QSlider" name="horizontalSlider">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -32,12 +36,85 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>952</width>
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuActions">
+    <property name="title">
+     <string>Actions</string>
+    </property>
+    <addaction name="actionAbout_Giraffe"/>
+   </widget>
+   <addaction name="menuActions"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QDockWidget" name="dockWidget_2">
+   <property name="windowTitle">
+    <string>Shader Editor</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QTextEdit" name="shaderTextEdit"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Compile Fragment shader</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_3">
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Debug infos</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QTextBrowser" name="DebugTextBrowser"/>
+     </item>
+     <item row="4" column="0" rowspan="2">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QCheckBox" name="checkBox_dumpWarning">
+         <property name="text">
+          <string>Dump warnings</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_clearConsole">
+         <property name="text">
+          <string>Clear Console</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionAbout_Giraffe">
+   <property name="text">
+    <string>About Giraffe</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -46,6 +123,25 @@
    <header>myglwidget.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
- <connections/>
+ <resources>
+  <include location="data/ressource.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButton_clearConsole</sender>
+   <signal>clicked()</signal>
+   <receiver>DebugTextBrowser</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>814</x>
+     <y>725</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>814</x>
+     <y>562</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

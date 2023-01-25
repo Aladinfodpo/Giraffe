@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>checker.png</file>
+        <file>giraffe.ico</file>
+    </qresource>
+</RCC>

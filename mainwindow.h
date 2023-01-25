@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 
@@ -16,10 +15,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void on_errorRaised(QString in_desc, bool isError);
+
 private slots:
     void on_horizontalSlider_valueChanged(int value);
+
+    void on_pushButton_clicked();
+
+    void on_actionAbout_Giraffe_triggered();
 
 private:
     Ui::MainWindow *ui;
 };
-#endif // MAINWINDOW_H
+
