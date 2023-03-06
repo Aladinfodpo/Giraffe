@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>checker.png</file>
         <file>giraffe.ico</file>
+        <file>sphere.obj</file>
     </qresource>
 </RCC>

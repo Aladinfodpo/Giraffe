@@ -17,6 +17,7 @@ public:
 
 public slots:
     void on_errorRaised(QString in_desc, bool isError);
+    void on_fpsCalculated(QString in_desc);
 
 private slots:
     void on_horizontalSlider_valueChanged(int value);
@@ -25,7 +26,18 @@ private slots:
 
     void on_actionAbout_Giraffe_triggered();
 
+    void on_horizontalSlider_2_valueChanged(int value);
+
+    void on_snapshotAvailable(QImage& image);
+
+    void on_listWidget_currentRowChanged(int currentRow);
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
+    std::vector<QImage> m_snapshot;
 };
 
