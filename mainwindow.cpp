@@ -2,19 +2,23 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <shellapi.h>
+#include <QSettings>
+#include <QFile>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->shaderTextEdit->setText(ui->openGLWidget->getFragmentShader().c_str());
     connect(ui->openGLWidget, &MyGLWidget::errorRaised, this, &MainWindow::on_errorRaised);
+    connect(ui->openGLWidget, &MyGLWidget::fragChanged, this, &MainWindow::on_fragChanged);
     connect(ui->openGLWidget, &MyGLWidget::fpsCalculated, this, &MainWindow::on_fpsCalculated);
     connect(ui->checkBox_dumpWarning, &QCheckBox::toggled, ui->openGLWidget, &MyGLWidget::dumpWarnings);
     connect(ui->pushButton_snapshot, &QPushButton::clicked, ui->openGLWidget, &MyGLWidget::takeScreenShot);
     connect(ui->openGLWidget, &MyGLWidget::snpashotAvailable, this, &MainWindow::on_snapshotAvailable);
     connect(ui->actionPlane, &QAction::triggered, ui->openGLWidget, &MyGLWidget::loadPlane);
+    connect(ui->actionSphere, &QAction::triggered, ui->openGLWidget, &MyGLWidget::loadSphere);
     connect(ui->actionSphere, &QAction::triggered, ui->openGLWidget, &MyGLWidget::loadSphere);
 
     QCoreApplication::setAttribute(Qt::AA_CompressHighFrequencyEvents, true);
@@ -82,3 +86,33 @@ void MainWindow::on_pushButton_3_clicked(){
     m_snapshot[row].save(filename);
     ShellExecuteA(NULL, "open", filename.toStdString().c_str(), NULL, NULL, SW_SHOWNORMAL);
 }
+
+void MainWindow::on_fragChanged(QString frag){
+    ui->shaderTextEdit->setText(frag);
+}
+
+void MainWindow::on_actionStash_triggered()
+{
+    QSettings settings("Giraffe","Giraffe");
+    settings.beginGroup("Stack");
+    settings.setValue("last", ui->shaderTextEdit->toPlainText());
+}
+
+
+void MainWindow::on_actionPop_triggered()
+{
+    QSettings settings("Giraffe","Giraffe");
+    settings.beginGroup("Stack");
+    auto frag = settings.value("last", "").toString();
+    if(!frag.isEmpty())
+        ui->shaderTextEdit->setText(frag);
+}
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QFile file((ui->lineEdit->text().isEmpty() ? "temp" : ui->lineEdit->text()) + ".glsl");
+    if(file.open(QIODevice::WriteOnly))
+        QTextStream(&file) << ui->shaderTextEdit->toPlainText();
+}
+

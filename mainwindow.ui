@@ -75,7 +75,7 @@
      <x>0</x>
      <y>0</y>
      <width>952</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuActions">
@@ -91,8 +91,16 @@
     <addaction name="actionSphere"/>
     <addaction name="actionPlane"/>
    </widget>
+   <widget class="QMenu" name="menuShader">
+    <property name="title">
+     <string>Shader</string>
+    </property>
+    <addaction name="actionStash"/>
+    <addaction name="actionPop"/>
+   </widget>
    <addaction name="menuActions"/>
    <addaction name="menuAsset"/>
+   <addaction name="menuShader"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="dockWidget_2">
@@ -113,6 +121,24 @@
         <string>Compile Fragment shader</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="text">
+          <string>Save to</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="text">
+          <string>giraffe</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
@@ -231,6 +257,16 @@
   <action name="actionPlane">
    <property name="text">
     <string>Plane</string>
+   </property>
+  </action>
+  <action name="actionStash">
+   <property name="text">
+    <string>Stash</string>
+   </property>
+  </action>
+  <action name="actionPop">
+   <property name="text">
+    <string>Pop</string>
    </property>
   </action>
  </widget>

@@ -36,6 +36,14 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_fragChanged(QString frag);
+
+    void on_actionStash_triggered();
+
+    void on_actionPop_triggered();
+
+    void on_pushButton_4_clicked();
+
 private:
     Ui::MainWindow *ui;
     std::vector<QImage> m_snapshot;

@@ -19,7 +19,7 @@ public:
     void loadSphere();
     void loadObj(QString filename);
 
-    std::string getFragmentShader(){return m_fragmentShaderSource;}
+    void setFragment(QString frag);
 
 signals:
     void errorRaised(QString desc, bool isError);
@@ -29,6 +29,8 @@ signals:
     void needsRedraw();
 
     void snpashotAvailable(QImage& image);
+
+    void fragChanged(QString frag);
 
 public slots:
     void dumpWarnings(bool dump);

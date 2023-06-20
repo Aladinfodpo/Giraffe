@@ -7,7 +7,7 @@
 #include <QMimeData>
 #include <chrono>
 
-#include "gtx/string_cast.hpp"
+#include "gtc/matrix_transform.hpp"
 
 MyGLWidget::MyGLWidget(QWidget *parent) : QOpenGLWidget(parent),
 camPos(glm::vec3(1.0f,0,1.f)), lookAt(glm::vec3(0,0,0.f)), fov(80.f){
@@ -50,7 +50,6 @@ camPos(glm::vec3(1.0f,0,1.f)), lookAt(glm::vec3(0,0,0.f)), fov(80.f){
         "}\n"
         "   gl_FragColor = intensity * diff + spec;\n"
         "};";
-
     connect(this, &MyGLWidget::needsRedraw, this, &MyGLWidget::redraw);
 }
 
@@ -120,6 +119,7 @@ void MyGLWidget::initializeGL()
     glUniform1f(glGetUniformLocation(m_shaderProgram, "in_x"), 0.5f);
 
     rotate(0.f, 0.f, 0.f);
+    emit fragChanged(m_fragmentShaderSource.c_str());
 }
 
 void MyGLWidget::paintGL()
@@ -207,7 +207,7 @@ void MyGLWidget::dragEnterEvent(QDragEnterEvent *event)
 
     for(const QUrl &url :  event->mimeData()->urls()) {
             QString fileName = url.toLocalFile();
-            if(fileName.endsWith(".obj"))
+            if(fileName.endsWith(".obj") || fileName.endsWith(".glsl"))
                 event->acceptProposedAction();
         }
 }
@@ -230,7 +230,15 @@ void MyGLWidget::dropEvent(QDropEvent *event)
             if(fileName.endsWith(".obj")){
                 event->acceptProposedAction();
                 loadObj(fileName);
-                return;
+            }
+            if(fileName.endsWith(".glsl")){
+                event->acceptProposedAction();
+                QFile file(fileName);
+                if(!file.exists() || !file.open(QIODevice::ReadOnly))
+                    return;
+                const QString code = file.readAll();
+                compileFrag(code);
+                emit fragChanged(code);
             }
         }
 }
