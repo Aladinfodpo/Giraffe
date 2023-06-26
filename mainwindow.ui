@@ -136,6 +136,16 @@
          <property name="text">
           <string>giraffe</string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>.glsl</string>
+         </property>
         </widget>
        </item>
       </layout>

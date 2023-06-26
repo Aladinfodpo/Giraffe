@@ -104,8 +104,10 @@ void MainWindow::on_actionPop_triggered()
     QSettings settings("Giraffe","Giraffe");
     settings.beginGroup("Stack");
     auto frag = settings.value("last", "").toString();
-    if(!frag.isEmpty())
+    if(!frag.isEmpty()){
         ui->shaderTextEdit->setText(frag);
+        ui->openGLWidget->compileFrag(frag);
+    }
 }
 
 

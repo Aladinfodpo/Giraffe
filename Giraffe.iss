@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Giraffe"
-#define MyAppVersion "0.0.4"
+#define MyAppVersion "0.0.5"
 #define MyAppPublisher "FittingBox"
 #define MyAppURL "https://www.fittingbox.com/"
 #define MyAppExeName "Giraffe.exe"
@@ -26,8 +26,8 @@ Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
 OutputBaseFilename={#MyAppName}Setup{#MyAppVersion}
-SetupIconFile=C:\Users\NicolasBEAUQUIN\source\repos\Girafe\data\giraffe.ico
-UninstallDisplayIcon=C:\Users\NicolasBEAUQUIN\source\repos\Girafe\data\giraffe.ico
+SetupIconFile=C:\Users\NicolasBEAUQUIN\source\Giraffe\data\giraffe.ico
+UninstallDisplayIcon=C:\Users\NicolasBEAUQUIN\source\Giraffe\data\giraffe.ico
 UninstallDisplayName={#MyAppName}
 
 [Languages]
@@ -37,12 +37,12 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}";
 
 [Files]
-Source: "C:\Users\NicolasBEAUQUIN\source\repos\build-Giraffe-Desktop_x86_windows_msvc2019_pe_64bit-Release\release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\NicolasBEAUQUIN\source\repos\build-Giraffe-Desktop_x86_windows_msvc2019_pe_64bit-Release\release\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\NicolasBEAUQUIN\source\repos\build-Giraffe-Desktop_x86_windows_msvc2019_pe_64bit-Release\release\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\NicolasBEAUQUIN\source\repos\build-Giraffe-Desktop_x86_windows_msvc2019_pe_64bit-Release\release\Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\NicolasBEAUQUIN\source\repos\build-Giraffe-Desktop_x86_windows_msvc2019_pe_64bit-Release\release\styles\qwindowsvistastyle.dll"; DestDir: "{app}/styles"; Flags: ignoreversion
-Source: "C:\Users\NicolasBEAUQUIN\source\repos\build-Giraffe-Desktop_x86_windows_msvc2019_pe_64bit-Release\release\platforms\qwindows.dll"; DestDir: "{app}/platforms"; Flags: ignoreversion
+Source: "C:\Users\NicolasBEAUQUIN\source\build-Giraffe-Desktop_x86_windows_msvc2022_pe_64bit-Release\release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\NicolasBEAUQUIN\source\build-Giraffe-Desktop_x86_windows_msvc2022_pe_64bit-Release\release\Qt5Core.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\NicolasBEAUQUIN\source\build-Giraffe-Desktop_x86_windows_msvc2022_pe_64bit-Release\release\Qt5Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\NicolasBEAUQUIN\source\build-Giraffe-Desktop_x86_windows_msvc2022_pe_64bit-Release\release\Qt5Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\NicolasBEAUQUIN\source\build-Giraffe-Desktop_x86_windows_msvc2022_pe_64bit-Release\release\styles\qwindowsvistastyle.dll"; DestDir: "{app}/styles"; Flags: ignoreversion
+Source: "C:\Users\NicolasBEAUQUIN\source\build-Giraffe-Desktop_x86_windows_msvc2022_pe_64bit-Release\release\platforms\qwindows.dll"; DestDir: "{app}/platforms"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

@@ -117,6 +117,8 @@ void MyGLWidget::initializeGL()
 
     glUniform1i(glGetUniformLocation(m_shaderProgram, "texture1"), 8);
     glUniform1f(glGetUniformLocation(m_shaderProgram, "in_x"), 0.5f);
+    glUniform1f(glGetUniformLocation(m_shaderProgram, "in_w"), width());
+    glUniform1f(glGetUniformLocation(m_shaderProgram, "in_h"), height());
 
     rotate(0.f, 0.f, 0.f);
     emit fragChanged(m_fragmentShaderSource.c_str());
@@ -131,6 +133,7 @@ void MyGLWidget::paintGL()
     nbFrame++;
     if(dur.count() > .3){
         emit fpsCalculated(QString::number(nbFrame/dur.count(),'f',0) + " fps");
+        glUniform1i(glGetUniformLocation(m_shaderProgram, "in_fps"), nbFrame/dur.count());
         prevTime = std::chrono::steady_clock::now();
         nbFrame = 0;
     }
@@ -264,6 +267,8 @@ void MyGLWidget::matrixChanged(){
     camMatrix = projectionMatrix * camMatrix;
     glUniformMatrix4fv(glGetUniformLocation(m_shaderProgram, "matrix"), 1, false, &camMatrix[0][0]);
     glUniform3f(glGetUniformLocation(m_shaderProgram, "cam"), camPos[0], camPos[1], camPos[2]);
+    glUniform1f(glGetUniformLocation(m_shaderProgram, "in_w"), width());
+    glUniform1f(glGetUniformLocation(m_shaderProgram, "in_h"), height());
     emit needsRedraw();
 }
 
